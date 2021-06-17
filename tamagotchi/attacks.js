@@ -11,7 +11,7 @@ function setup() {
   frameRate(10);
 }
 
-export default class Attack {
+class Attack {
   constructor(hit) {
     this.hit = hit;
   }

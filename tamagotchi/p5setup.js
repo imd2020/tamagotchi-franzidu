@@ -1,13 +1,13 @@
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  frameRate(30);
+  createCanvas(950, 600);
+  frameRate(10);
 }
 
 window.addEventListener("resize", function () {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(950, 600);
   clear();
 });
 
 new p5();
-var width = windowWidth;
-var height = windowHeight;
+var width = 950;
+var height = 600;

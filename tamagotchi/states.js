@@ -1,10 +1,6 @@
 let state = "start";
 
-function setup() {
-  frameRate(10);
-}
-
-export default class Screen {
+class Screen {
   constructor(x, y, w, h) {
     this.x = x;
     this.y = y;

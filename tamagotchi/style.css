@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  background-color: darkgreen;
+}
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+}

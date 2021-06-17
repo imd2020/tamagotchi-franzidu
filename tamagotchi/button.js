@@ -1,3 +1,5 @@
+let hit;
+
 export default class Button {
   constructor(x, y, w, h) {
     this.x = x;
@@ -31,19 +33,3 @@ export default class Button {
   //   //enemy gets damage of tackle
   // }
 }
-
-// let oneButton = new Button(100, 200, 200, 100);
-// let twoButton = new Button(350, 200, 200, 100);
-
-// function draw() {
-//   oneButton.displayButton();
-//   twoButton.displayButton();
-//   // twoButton.buttonAttack();
-// }
-
-// function mouseClicked() {
-//   oneButton.hitBox();
-//   twoButton.hitBox();
-// }
-
-//export

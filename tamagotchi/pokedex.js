@@ -1,3 +1,5 @@
+let pokedexIMG = loadImage("pokedexIMG.png");
+
 export function innerScreen() {
   push();
   fill(255);
