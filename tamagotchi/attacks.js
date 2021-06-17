@@ -1,12 +1,17 @@
 // import
 
 /**
- *
+ *@param hit hitting true/false the opposing pokemon
  */
 
+//damage they are causing the attacking pokemon
 let damage;
 
-class Attack {
+function setup() {
+  frameRate(10);
+}
+
+export default class Attack {
   constructor(hit) {
     this.hit = hit;
   }
@@ -36,7 +41,9 @@ class Attack {
   }
 }
 
+// if attack true, the attack causes the opposing pokemon damage
 let attack = new Attack(true);
+// the attack to perform
 attack.tackle();
 
 // export
