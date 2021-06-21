@@ -4,7 +4,7 @@ export function innerScreen() {
   push();
   fill(255);
   noStroke();
-  rect(265, 130, 470, 360);
+  rect(265, 112, 470, 360);
   pop();
 }
 //measures innerScreen: 470x360
