@@ -1,4 +1,5 @@
 window.draw = draw;
+// window.mouseClicked = mouseClicked;
 
 
 // IMPORTS
@@ -9,10 +10,9 @@ import Screen from "./states.js";
 
 let screen = new Screen();
 
+
 // draw
 function draw() {
   screen.draw();
   outtaScreen();
 }
-
-

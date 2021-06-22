@@ -12,6 +12,3 @@ export default class Attack {
     return damage;
   }
 }
-
-// the attack to perform
-// console.log(tackle.perform());

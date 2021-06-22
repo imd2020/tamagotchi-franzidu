@@ -4,6 +4,7 @@ import Text from "./Text.js";
 import Starter from "./starterPokemon.js";
 import Enemy from "./enemyPokemon.js";
 import Attack from "./attacks.js";
+import HealthBar from "./healthBar.js";
 
 //Arrays
 let charmanderGraphic = loadImage("assets/starters/starter0.gif");
@@ -23,7 +24,7 @@ let guideButton = new Button(300, 140, 400, 300);
 let guideText = new Text(
   350,
   180,
-  "Welcome to pokemon tamagochi! \n hier könnte ihre werbung stehen",
+  "Welcome to pokemon tamagochi! \nYour suggested pokemon is \ncharmander! \nYou have a health of 200 HP,\nso does your opponent. \nUse your attacks to fight him! \nBut remember : \nNot every attack \ndoes the same damage!",
   20
 );
 let nextButton = new Button(610, 370, 70, 50);
@@ -42,14 +43,15 @@ let thunderShock = new Attack("thunder shock", 20, 55); //donnerschock
 // let sing = new Attack("sing", 0, 0); //gesang
 
 //Pokemon
-let ownPokemon = new Starter(320, 210, 100, 100, 200, charmanderGraphic);
+let ownPokemon = new Starter(320, 210, 100, 100, 200, charmanderGraphic,490, 280);
 let opponent = new Enemy(580, 130, 100, 100, 200, pikachuGraphic, [
   thunderShock,
   bite,
   tackle,
   growl,
-]);
-// let currentAttackOpponent= opponent.getRandomAttack();
+],390, 170,);
+
+let currentAttackOpponent= opponent.getRandomAttack();
 
 //attackbuttons
 let attackButton1 = new Button(290, 340, 200, 50); //left up
@@ -67,13 +69,15 @@ let attackText4 = new Text(560, 440, "Growl", 30);
 //text
 let winner = new Text(420, 300, "WINNER", 40);
 
+
+
 export default class Screen {
   constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.state = "start";
+    this.state = "battle";
   }
   start() {
     image(backgroundStandard, 265, 112, 470, 360);
@@ -99,37 +103,44 @@ export default class Screen {
     image(battleField, 265, 112, 470, 360);
     ownPokemon.display();
     opponent.display();
-    //buttons
+
+    //buttons/attacks
     attackButton1.standardButton();
     attackText1.display();
     if (attackButton1.hitBox()) {
-      opponent.health -= tackle.perform();
-      console.log(opponent.health);
+      opponent.damage(tackle.perform());
+      ownPokemon.damage(currentAttackOpponent.perform());
+      console.log("opponent" + opponent.health);
+      console.log("own" + ownPokemon.health);
     }
     attackButton2.standardButton();
     attackText2.display();
     if (attackButton2.hitBox()) {
-      opponent.health -= ember.perform();
+      opponent.damage(ember.perform());
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log(opponent.health);
     }
     attackButton3.standardButton();
     attackText3.display();
     if (attackButton3.hitBox()) {
-      opponent.health -= bite.perform();
+      opponent.damage(bite.perform());
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log(opponent.health);
     }
     attackButton4.standardButton();
     attackText4.display();
     if (attackButton4.hitBox()) {
-      opponent.health -= growl.perform();
+      opponent.damage(growl.perform());
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log(opponent.health);
     }
     //state change
     if (opponent.health <= 0) {
       this.state = "winner";
     }
-    // console.log(currentAttackOpponent.name);
-    //HIER ATTACKEN EINFÜGEN
+    if (ownPokemon.health <=0){
+      this.state = "looser";
+    }
   }
   winner() {
     image(backgroundStandard, 265, 112, 470, 360);
@@ -144,6 +155,13 @@ export default class Screen {
   }
   loosing() {
     image(backgroundStandard, 265, 112, 470, 360);
+    playAgainButton.standardButton();
+    playAgainText.display();
+    if (playAgainButton.hitBox()) {
+      this.state = "start";
+      opponent.health = 200;
+      ownPokemon.health = 200;
+    }
   }
   draw() {
     //States
