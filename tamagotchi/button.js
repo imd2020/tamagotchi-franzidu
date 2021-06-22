@@ -26,15 +26,7 @@ export default class Button {
     push();
     strokeWeight(5);
     stroke(0);
-    fill(255);
-    rect(this.x, this.y, this.w, this.h, 10);
-    pop();
-  }
-  attackButton() {
-    push();
-    strokeWeight(5);
-    stroke(0);
-    fill(255);
+    fill(255, 255, 255, 100);
     rect(this.x, this.y, this.w, this.h, 10);
     pop();
   }

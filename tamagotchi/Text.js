@@ -1,22 +1,17 @@
+let myFont = loadFont("assets/Lo-Res/Lo-Res 12 Regular.ttf");
 export default class Text {
-  constructor(x, y, message) {
+  constructor(x, y, message, size) {
     this.x = x;
     this.y = y;
     this.message = message;
+    this.size = size;
   }
-  standardText() {
+  display() {
     push();
     stroke(0);
     strokeWeight(1);
-    textSize(20);
-    text(this.message, this.x, this.y);
-    pop();
-  }
-  bigText() {
-    push();
-    stroke(0);
-    strokeWeight(1);
-    textSize(40);
+    textFont(myFont);
+    textSize(this.size);
     text(this.message, this.x, this.y);
     pop();
   }

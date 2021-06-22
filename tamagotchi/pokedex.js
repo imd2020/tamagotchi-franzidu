@@ -1,4 +1,4 @@
-let pokedexIMG = loadImage("pokedexIMG.png");
+let pokedexIMG = loadImage("assets/pokedexIMG.png");
 
 export function innerScreen() {
   push();

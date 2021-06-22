@@ -1,3 +1,5 @@
+window.setup = setup;
+
 function setup() {
   createCanvas(950, 600);
   frameRate(10);
