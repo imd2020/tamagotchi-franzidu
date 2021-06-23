@@ -77,7 +77,7 @@ export default class Screen {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.state = "battle";
+    this.state = "start";
   }
   start() {
     image(backgroundStandard, 265, 112, 470, 360);
@@ -109,7 +109,7 @@ export default class Screen {
     attackText1.display();
     if (attackButton1.hitBox()) {
       opponent.damage(tackle.perform());
-      ownPokemon.damage(currentAttackOpponent.perform());
+      ownPokemon.damage(currentAttackOpponent);
       console.log("opponent" + opponent.health);
       console.log("own" + ownPokemon.health);
     }
@@ -117,21 +117,21 @@ export default class Screen {
     attackText2.display();
     if (attackButton2.hitBox()) {
       opponent.damage(ember.perform());
-      ownPokemon.damage(currentAttackOpponent.perform());
+      ownPokemon.damage(currentAttackOpponent);
       console.log(opponent.health);
     }
     attackButton3.standardButton();
     attackText3.display();
     if (attackButton3.hitBox()) {
       opponent.damage(bite.perform());
-      ownPokemon.damage(currentAttackOpponent.perform());
+      ownPokemon.damage(currentAttackOpponent);
       console.log(opponent.health);
     }
     attackButton4.standardButton();
     attackText4.display();
     if (attackButton4.hitBox()) {
       opponent.damage(growl.perform());
-      ownPokemon.damage(currentAttackOpponent.perform());
+      ownPokemon.damage(currentAttackOpponent);
       console.log(opponent.health);
     }
     //state change
