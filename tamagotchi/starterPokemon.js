@@ -8,7 +8,7 @@ export default class Starter {
     this.h = h;
     this.starter = starter;
     this.health = health;
-    this.healthBar = new HealthBar(posHealthX,posHealthY);
+    this.healthBar = new HealthBar(posHealthX, posHealthY);
     this.maxHealth = health;
   }
   display() {
@@ -16,7 +16,10 @@ export default class Starter {
     this.healthBar.display();
     this.healthBar.mechanic(this.health, this.maxHealth);
   }
-  damage(damage){
+  damage(damage) {
     this.health -= damage;
+    console.log("Ich bekomme schaden");
+    console.log(damage);
+    console.log(this.health + "me");
   }
 }

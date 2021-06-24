@@ -4,7 +4,6 @@ import Text from "./Text.js";
 import Starter from "./starterPokemon.js";
 import Enemy from "./enemyPokemon.js";
 import Attack from "./attacks.js";
-import HealthBar from "./healthBar.js";
 
 //Arrays
 let charmanderGraphic = loadImage("assets/starters/starter0.gif");
@@ -43,15 +42,29 @@ let thunderShock = new Attack("thunder shock", 20, 55); //donnerschock
 // let sing = new Attack("sing", 0, 0); //gesang
 
 //Pokemon
-let ownPokemon = new Starter(320, 210, 100, 100, 200, charmanderGraphic,490, 280);
-let opponent = new Enemy(580, 130, 100, 100, 200, pikachuGraphic, [
-  thunderShock,
-  bite,
-  tackle,
-  growl,
-],390, 170,);
+let ownPokemon = new Starter(
+  320,
+  210,
+  100,
+  100,
+  200,
+  charmanderGraphic,
+  490,
+  280
+);
+let opponent = new Enemy(
+  580,
+  130,
+  100,
+  100,
+  200,
+  pikachuGraphic,
+  [thunderShock, bite, tackle, growl],
+  390,
+  170
+);
 
-let currentAttackOpponent= opponent.getRandomAttack();
+let currentAttackOpponent = opponent.getRandomAttack();
 
 //attackbuttons
 let attackButton1 = new Button(290, 340, 200, 50); //left up
@@ -68,8 +81,7 @@ let attackText4 = new Text(560, 440, "Growl", 30);
 
 //text
 let winner = new Text(420, 300, "WINNER", 40);
-
-
+let looser = new Text(420, 300, "LOOSER", 40);
 
 export default class Screen {
   constructor(x, y, w, h) {
@@ -82,6 +94,7 @@ export default class Screen {
   start() {
     image(backgroundStandard, 265, 112, 470, 360);
     startButton.standardButton();
+
     startText.display();
     if (startButton.hitBox()) {
       this.state = "guide";
@@ -109,7 +122,7 @@ export default class Screen {
     attackText1.display();
     if (attackButton1.hitBox()) {
       opponent.damage(tackle.perform());
-      ownPokemon.damage(currentAttackOpponent);
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log("opponent" + opponent.health);
       console.log("own" + ownPokemon.health);
     }
@@ -117,28 +130,28 @@ export default class Screen {
     attackText2.display();
     if (attackButton2.hitBox()) {
       opponent.damage(ember.perform());
-      ownPokemon.damage(currentAttackOpponent);
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log(opponent.health);
     }
     attackButton3.standardButton();
     attackText3.display();
     if (attackButton3.hitBox()) {
       opponent.damage(bite.perform());
-      ownPokemon.damage(currentAttackOpponent);
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log(opponent.health);
     }
     attackButton4.standardButton();
     attackText4.display();
     if (attackButton4.hitBox()) {
       opponent.damage(growl.perform());
-      ownPokemon.damage(currentAttackOpponent);
+      ownPokemon.damage(currentAttackOpponent.perform());
       console.log(opponent.health);
     }
     //state change
     if (opponent.health <= 0) {
       this.state = "winner";
     }
-    if (ownPokemon.health <=0){
+    if (ownPokemon.health <= 0) {
       this.state = "looser";
     }
   }
@@ -155,6 +168,7 @@ export default class Screen {
   }
   loosing() {
     image(backgroundStandard, 265, 112, 470, 360);
+    looser.display();
     playAgainButton.standardButton();
     playAgainText.display();
     if (playAgainButton.hitBox()) {
